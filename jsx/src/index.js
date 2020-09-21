@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 function getButtonText() {
-    return "Click Me!";
+  return "Click Me!";
 }
 
 /*
@@ -11,18 +11,18 @@ We can use objects in jsx as properties, eg in style, as long as they are not be
  */
 
 const App = () => {
-    const nameText = "Enter name:";
-    return (
-        <div>
-            <label className="label" for="name">
-                {nameText}
-            </label>
-            <input id="name" type="text" />
-            <button style={{ color: "white", backgroundColor: "blue" }}>
-                {getButtonText()}
-            </button>
-        </div>
-    );
+  const nameText = "Enter name:";
+  return (
+    <div>
+      <label className="label" for="name">
+        {nameText}
+      </label>
+      <input id="name" type="text" />
+      <button style={{ color: "white", backgroundColor: "blue" }}>
+        {getButtonText()}
+      </button>
+    </div>
+  );
 };
 
 ReactDOM.render(<App />, document.querySelector("#root"));
