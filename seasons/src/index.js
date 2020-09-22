@@ -6,7 +6,9 @@ class App extends React.Component {
     super(props);
     // we ONLY assign to state in the constructor, everything else MUST be done with setState()
     this.state = { lat: null, errorMessage: "" };
+  }
 
+  componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
       (position) => {
         this.setState({ lat: position.coords.latitude });
@@ -15,10 +17,6 @@ class App extends React.Component {
         this.setState({ errorMessage: error.message });
       }
     );
-  }
-
-  componentDidMount() {
-    console.log("my component was rendered to the screen");
   }
 
   componentDidUpdate() {
