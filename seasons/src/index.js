@@ -22,8 +22,7 @@ class App extends React.Component {
     console.log("my component just updated");
   }
 
-  //we need to define render for React to work
-  render() {
+  renderContent() {
     if (!this.state.lat && this.state.errorMessage) {
       return <div>Error: {this.state.errorMessage}</div>;
     }
@@ -31,6 +30,11 @@ class App extends React.Component {
       return <SeasonDisplay lat={this.state.lat} />;
     }
     return <Spinner message={"Please accept location request"} />;
+  }
+
+  //we need to define render for React to work
+  render() {
+    return <div>{this.renderContent()}</div>;
   }
 }
 
