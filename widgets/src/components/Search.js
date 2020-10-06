@@ -1,15 +1,40 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Search = () => {
-  const [term, setTerm] = useState("");
+  const [term, setTerm] = useState("programming");
+  const [results, setResults] = useState([]);
 
   useEffect(() => {
-    console.log("aweqweqwe");
+    const search = async () => {
+      const { data } = await axios.get("https://en.wikipedia.org/w/api.php", {
+        params: {
+          action: "query",
+          list: "search",
+          origin: "*",
+          format: "json",
+          srsearch: term,
+        },
+      });
+      setResults(data.query.search);
+    };
+    search();
   }, [term]);
   // 2nd arg of useEffect:
   // []             -> runs at initial render of component.
   // [someState]    -> runs at initial render and when someState has changed since last render.
   // nothing        -> runs at initial render and every re-render.
+
+  const renderedResults = results.map((result) => {
+    return (
+      <div key={result.pageid} className={"item"}>
+        <div className={"content"}>
+          <div className={"header"}>{result.title}</div>
+          {result.snippet}
+        </div>
+      </div>
+    );
+  });
 
   return (
     <div>
@@ -22,7 +47,8 @@ const Search = () => {
             onChange={(e) => setTerm(e.target.value)}
           />
         </div>
-      </div>{" "}
+      </div>
+      <div className={"ui celled list"}>{renderedResults}</div>
     </div>
   );
 };
