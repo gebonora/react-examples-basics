@@ -3,21 +3,9 @@ import axios from "axios";
 
 const Search = () => {
   const [term, setTerm] = useState("programming");
-  const [debouncedTerm, setDebouncedTerm] = useState(term);
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    const timerId = setTimeout(() => {
-      setDebouncedTerm(term);
-    }, 1000);
-    // Cleanup function
-    return () => {
-      clearTimeout(timerId);
-    };
-  }, [term]);
-
-  useEffect(() => {
-    // async await technique for useEffect
     const search = async () => {
       const { data } = await axios.get("https://en.wikipedia.org/w/api.php", {
         params: {
@@ -25,15 +13,15 @@ const Search = () => {
           list: "search",
           origin: "*",
           format: "json",
-          srsearch: debouncedTerm,
+          srsearch: term,
         },
       });
       setResults(data.query.search);
     };
-    if (debouncedTerm) {
+    if (term) {
       search();
     }
-  }, [debouncedTerm]);
+  }, [term]);
   // 2nd arg of useEffect:
   // []             -> runs at initial render of component.
   // [someState]    -> runs at initial render and when someState has changed since last render.
