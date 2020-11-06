@@ -18,6 +18,7 @@ class GoogleAuth extends React.Component {
         });
     });
   }
+
   // arrow because its callback
   onAuthChange = (isSignedIn) => {
     if (isSignedIn) {
