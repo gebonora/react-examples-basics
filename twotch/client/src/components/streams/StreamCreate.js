@@ -12,8 +12,9 @@ class StreamCreate extends React.Component {
     );
   }
 
-  onSubmit(event) {
-    event.preventDefault();
+  onSubmit(formValues) {
+    //handleSubmit from Redux-form does the preventDefault and sends the Fields in formValues as arg.
+    console.log(formValues);
   }
 
   render() {
@@ -32,6 +33,7 @@ class StreamCreate extends React.Component {
           component={this.renderInput}
           label={"Enter Description"}
         />
+        <button className={"ui button primary"}>Submit</button>
       </form>
     );
   }
