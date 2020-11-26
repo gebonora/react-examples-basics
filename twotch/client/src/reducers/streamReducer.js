@@ -7,7 +7,7 @@ import {
   EDIT_STREAM,
 } from "../actions/types";
 
-export default (state = {}, action) => {
+const streamReducer = (state = {}, action) => {
   switch (action.type) {
     case CREATE_STREAM:
       return { ...state, [action.payload.id]: action.payload };
@@ -16,7 +16,7 @@ export default (state = {}, action) => {
     case EDIT_STREAM:
       return { ...state, [action.payload.id]: action.payload };
     case FETCH_STREAMS:
-      return {...state, ..._.mapKeys(action.payload, "id")};
+      return { ...state, ..._.mapKeys(action.payload, "id") }; //el ... en mapKeys es para "aplanarlo" como keys del state"
     //crea un objeto a partir del array (1er arg), poniendo como keys la key del elemento especificada
     // en el segundo arg como string. En este caso tenemos un array de objetos que tienen una key "id"
     // y le creamos una key al objeto con el valor de id, y le asignamos el objeto.
@@ -26,3 +26,5 @@ export default (state = {}, action) => {
       return state;
   }
 };
+
+export default streamReducer;
