@@ -1,14 +1,21 @@
 import React from "react";
 import LanguageContext from "../contexts/LanguageContext";
+import ColorContext from "../contexts/ColorContext";
 
 class Button extends React.Component {
-  static contextType = LanguageContext;
-  // static adds a property directly to the class itself.
-  // equals to doing: Button.contextType = LanguageContext; outside the class.
-
   render() {
-    const text = this.context === "english" ? "Submit" : "Voorleggen";
-    return <button className={"ui button primary"}>{text}</button>;
+    // Consumer takes a function as a child
+    return (
+      <ColorContext.Consumer>
+        {(color) => (
+          <button className={`ui button ${color}`}>
+            <LanguageContext.Consumer>
+              {(value) => (value === "english" ? "Submit" : "Voorleggen")}
+            </LanguageContext.Consumer>
+          </button>
+        )}
+      </ColorContext.Consumer>
+    );
   }
 }
 
