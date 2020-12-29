@@ -24,9 +24,18 @@ class App extends React.Component {
             onClick={() => this.onLanguageChange("dutch")}
           />
         </div>
+        {/*Uses the state in its context*/}
         <LanguageContext.Provider value={this.state.language}>
           <UserCreate />
         </LanguageContext.Provider>
+
+        {/*Uses a hardcoded "dutch" value for its context*/}
+        {/*<LanguageContext.Provider value={"dutch"}>*/}
+        {/*  <UserCreate />*/}
+        {/*</LanguageContext.Provider>*/}
+
+        {/*/!*Uses the default value because it doesnt have a Provider*!/*/}
+        {/*<UserCreate />*/}
       </div>
     );
   }
