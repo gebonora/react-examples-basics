@@ -2,7 +2,7 @@ import React from "react";
 
 class App extends React.Component {
   render() {
-    return <div>app</div>;
+    return <div className={"ui container"}>App</div>;
   }
 }
 
